@@ -8,8 +8,11 @@ namespace LibraryApi.Models
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        {
             optionsBuilder.UseNpgsql("Host=localhost;database=libraryapi");
         }
+
+        public DbSet<Author> Authors { get; set; }
     }
 }
