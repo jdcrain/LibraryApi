@@ -16,5 +16,6 @@ namespace LibraryApi.Models
         // Tell Entity Framework about the Author model and that it should be store in the DB
         //  a migration was created to store the Author data in a table
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

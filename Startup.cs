@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using JsonApiDotNetCore.Data;
 using JsonApiDotNetCore.Extensions;
 using LibraryApi.Domain.Authors;
+using LibraryApi.Domain.Books;
 using LibraryApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,7 @@ namespace LibraryApi
             services.AddCors();
 
             services.AddScoped<IEntityRepository<Author>, AuthorsRepository>(); // register author repository to override query
+            services.AddScoped<IEntityRepository<Book>, BooksRepository>(); // register book repository to override query
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
