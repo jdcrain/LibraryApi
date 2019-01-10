@@ -13,6 +13,8 @@ namespace LibraryApi.Models
             optionsBuilder.UseNpgsql("Host=localhost;database=libraryapi");
         }
 
+        // Tell Entity Framework about the Author model and that it should be store in the DB
+        //  a migration was created to store the Author data in a table
         public DbSet<Author> Authors { get; set; }
     }
 }
