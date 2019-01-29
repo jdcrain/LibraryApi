@@ -11,6 +11,7 @@ using LibraryApi.Domain.Books;
 using LibraryApi.Domain.Reviews;
 using LibraryApi.Domain.Users;
 using LibraryApi.Models;
+using LibraryApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -57,6 +58,7 @@ namespace LibraryApi
             services.AddScoped<IEntityRepository<Author>, AuthorsRepository>(); // register author repository to override query
             services.AddScoped<IEntityRepository<Book>, BooksRepository>(); // register book repository to override query
             services.AddScoped<IEntityRepository<Review>, ReviewsRepository>(); // register review repository to override query
+            services.AddScoped<CurrentUserService>(); // register user sevice as scoped so the service is recreated for each individual request
 
             services.AddScoped<ResourceDefinition<User>, UserResource>();
         }
