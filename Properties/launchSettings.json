@@ -23,7 +23,8 @@
       "launchUrl": "api/values",
       "applicationUrl": "https://localhost:3001;http://localhost:3000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JWT_SECRET": "87z+0xs+ypYQpXmJyy2e1aOZFKo7QBOe7kBMZO15ONRBux9ofcKjdhFQlkf1M8HJ"
       }
     }
   }
