@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using JsonApiDotNetCore.Data;
 using JsonApiDotNetCore.Extensions;
+using JsonApiDotNetCore.Models;
 using LibraryApi.Domain.Authors;
 using LibraryApi.Domain.Books;
 using LibraryApi.Domain.Reviews;
+using LibraryApi.Domain.Users;
 using LibraryApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,13 +36,18 @@ namespace LibraryApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<AppDbContext>();
-            services.AddJsonApi<AppDbContext>();
+            services.AddJsonApi<AppDbContext>(options => 
+            {
+                options.ValidateModelState = true;
+            });
 
             services.AddCors();
 
             services.AddScoped<IEntityRepository<Author>, AuthorsRepository>(); // register author repository to override query
             services.AddScoped<IEntityRepository<Book>, BooksRepository>(); // register book repository to override query
             services.AddScoped<IEntityRepository<Review>, ReviewsRepository>(); // register review repository to override query
+
+            services.AddScoped<ResourceDefinition<User>, UserResource>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
