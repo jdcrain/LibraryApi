@@ -9,7 +9,7 @@ namespace LibraryApi
 {
     public class CurrentUserFilter : ActionFilterAttribute
     {
-        // Create an action fileter that adds the user to the current HttpContext of the request
+        // Create an action filter that adds the user to the current HttpContext of the request
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var httpContext = context.HttpContext;

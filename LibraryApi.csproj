@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
-    <PackageReference Include="JsonApiDotnetCore" Version="2.4.0" />
+    <PackageReference Include="JsonApiDotnetCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.2" />

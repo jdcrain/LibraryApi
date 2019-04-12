@@ -8,10 +8,10 @@ namespace LibraryApi.Models
 {
     public class User : Identifiable
     {
-        [Attr("email"), UniqueEmail, Required(AllowEmptyStrings = false)] public string Email { get; set; }
-        [Attr("username"), UniqueUserName, Required(AllowEmptyStrings = false)] public string Username { get; set; }
-        [Attr("password"), NotMapped, Required(AllowEmptyStrings = false), Compare("PasswordConfirmation")] public string Password { get; set; }
-        [Attr("password-confirmation"), NotMapped, Required(AllowEmptyStrings = false)] public string PasswordConfirmation { get; set; }
+        [Attr("email"), UniqueEmail, Required(AllowEmptyStrings = false, ErrorMessage="email is required")] public string Email { get; set; }
+        [Attr("username"), UniqueUserName, Required(AllowEmptyStrings = false, ErrorMessage="username is required")] public string Username { get; set; }
+        [Attr("password"), NotMapped, Required(AllowEmptyStrings = false, ErrorMessage="password is required"), Compare("PasswordConfirmation")] public string Password { get; set; }
+        [Attr("password-confirmation"), NotMapped, Required(AllowEmptyStrings = false, ErrorMessage="password confirmation is required")] public string PasswordConfirmation { get; set; }
         public string PasswordHash { get; set; }
     }
 
