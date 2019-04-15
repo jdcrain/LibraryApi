@@ -4,7 +4,7 @@ using JsonApiDotNetCore.Models;
 
 namespace LibraryApi.Models
 {
-    public class Book : Identifiable
+    public class Book : BelongsToUser
     {
         [Attr("isbn")] public string Isbn { get; set; }
         [Attr("title")] public string Title { get; set; }

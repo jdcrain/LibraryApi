@@ -1,12 +1,12 @@
-using JsonApiDotNetCore.Controllers;
 using JsonApiDotNetCore.Services;
+using LibraryApi.Controllers;
 using LibraryApi.Models;
 using Microsoft.Extensions.Logging;
 
 namespace LibraryApi.Domain.Authors
 {
     // extend controller from the JsonApiController base class
-    public class AuthorsController : JsonApiController<Author>
+    public class AuthorsController : BelongsToUserController<Author>
     {
         // controller constructor to pass everything into the base class
         public AuthorsController(
