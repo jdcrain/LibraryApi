@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using JsonApiDotNetCore.Models;
 
 namespace LibraryApi.Models
@@ -6,5 +7,7 @@ namespace LibraryApi.Models
     {
         public int UserId { get; set; }
         public User User { get; set; }
+
+        [Attr("username"), NotMapped] public string Username { get => User?.Username; }
     }
 }

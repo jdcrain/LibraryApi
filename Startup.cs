@@ -55,11 +55,11 @@ namespace LibraryApi
             services.AddCors();
 
             // add scoped creates one instance per request
+            services.AddScoped<CurrentUserService>(); // register user sevice as scoped so the service is recreated for each individual request
             services.AddScoped<IEntityRepository<Author>, AuthorsRepository>(); // register author repository to override query
             services.AddScoped<IEntityRepository<Book>, BooksRepository>(); // register book repository to override query
             services.AddScoped<IEntityRepository<Review>, ReviewsRepository>(); // register review repository to override query
-            services.AddScoped<CurrentUserService>(); // register user sevice as scoped so the service is recreated for each individual request
-
+            
             services.AddScoped<ResourceDefinition<User>, UserResource>();
         }
 

@@ -3,9 +3,8 @@ using JsonApiDotNetCore.Models;
 
 namespace LibraryApi.Models
 {
-    public class Review : Identifiable
+    public class Review : BelongsToUser
     {
-        [Attr("user")] public string User { get; set; }
         [Attr("body")] public string Body { get; set; }
         [Attr("created-at")] public DateTime CreatedAt { get; set; } = DateTime.Now;
         public int BookId { get; set; }
