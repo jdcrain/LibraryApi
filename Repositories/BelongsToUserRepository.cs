@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using JsonApiDotNetCore.Data;
+using JsonApiDotNetCore.Internal;
 using JsonApiDotNetCore.Models;
 using JsonApiDotNetCore.Services;
 using LibraryApi.Models;
@@ -40,6 +41,31 @@ namespace LibraryApi.Repositories
             await _db.Entry(savedEntity).Reference(e => e.User).LoadAsync();
 
             return savedEntity;
+        }
+
+        public override async Task<T> UpdateAsync(int id, T input)
+        {
+            await CheckUser(id);
+
+            return await base.UpdateAsync(id, input);
+        }
+
+        public override async Task<bool> DeleteAsync(int id)
+        {
+            await CheckUser(id);
+
+            return await base.DeleteAsync(id);
+        }
+
+        protected async Task CheckUser(int id)
+        {
+            var userId = _currentUser.GetUserId();
+            var entity = await GetAsync(id);
+
+            if (userId != entity.UserId)
+            {
+                throw new JsonApiException(403, "Forbidden", detail: "User does not have access to edit this resource");
+            }
         }
     }
 }

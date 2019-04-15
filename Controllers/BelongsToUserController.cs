@@ -18,5 +18,11 @@ namespace LibraryApi.Controllers
 
         [HttpPost, CurrentUserFilter]
         public override async Task<IActionResult> PostAsync([FromBody] T model) => await base.PostAsync(model);
+
+        [HttpPatch("{id}"), CurrentUserFilter]
+        public override async Task<IActionResult> PatchAsync(int id, [FromBody] T model) => await base.PatchAsync(id, model);
+
+        [HttpDelete("{id}"), CurrentUserFilter]
+        public override async Task<IActionResult> DeleteAsync(int id) => await base.DeleteAsync(id);
     }
 }
