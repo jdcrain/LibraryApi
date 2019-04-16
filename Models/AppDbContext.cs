@@ -22,7 +22,7 @@ namespace LibraryApi.Models
                 var username = uri.UserInfo.Split(':')[0];
                 var password = uri.UserInfo.Split(':')[1];
                 var database = uri.LocalPath.Substring(1);
-                connectionString = $"Host={host};port={port};username={username};password={password};database={database};sslmode=Prefer;Trust Server Certificate=true";
+                connectionString = $"host={host};port={port};username={username};password={password};database={database};sslmode=Prefer;Trust Server Certificate=true";
             }
 
             optionsBuilder.UseNpgsql(connectionString);
