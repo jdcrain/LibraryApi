@@ -10,7 +10,16 @@ namespace LibraryApi.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseNpgsql("Host=localhost;database=libraryapi");
+            optionsBuilder.UseNpgsql("Host=localhost;database=libraryapi;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Author>()
+                .HasMany(e => e.Books)
+                .WithOne(b => b.Author)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         // Tell Entity Framework about the Author model and that it should be store in the DB
