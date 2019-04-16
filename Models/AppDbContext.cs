@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 
@@ -10,7 +11,21 @@ namespace LibraryApi.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseNpgsql("Host=localhost;database=libraryapi;");
+            var connectionString = "Host=localhost;database=libraryapi;";
+            var databaseUrlEnv = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+            if (databaseUrlEnv != null)
+            {
+                Uri.TryCreate(databaseUrlEnv, UriKind.Absolute, out var uri);
+                var host = uri.Host;
+                var port = uri.Port;
+                var username = uri.UserInfo.Split(':')[0];
+                var password = uri.UserInfo.Split(':')[1];
+                var database = uri.LocalPath.Substring(1);
+                connectionString = $"Host={host};port={port};username={username};password={password};database={database};sslmode=Prefer;Trust Server Certificate=true";
+            }
+
+            optionsBuilder.UseNpgsql(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
